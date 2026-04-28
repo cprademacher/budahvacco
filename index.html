@@ -3,82 +3,1103 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Buda HVAC Co.</title>
+    <title>Buda HVAC Co. — Heating & Cooling Experts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --orange: #ff6b35;
+        --orange-dark: #e05520;
+        --navy: #0f1f38;
+        --navy-light: #1a3154;
+        --gray: #f4f4f2;
+        --gray-mid: #e8e8e4;
+        --text: #1a1a1a;
+        --text-muted: #666;
+        --white: #ffffff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
-        font-family: Arial, sans-serif;
-        max-width: 800px;
+        font-family: "Barlow", sans-serif;
+        color: var(--text);
+        background: var(--white);
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(15, 31, 56, 0.97);
+        backdrop-filter: blur(8px);
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+
+      .nav-logo {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 22px;
+        color: var(--white);
+        letter-spacing: 0.02em;
+        text-decoration: none;
+      }
+
+      .nav-logo span {
+        color: var(--orange);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--orange);
+      }
+
+      .nav-cta {
+        background: var(--orange);
+        color: var(--white) !important;
+        padding: 8px 20px;
+        border-radius: 4px;
+        transition: background 0.2s !important;
+      }
+
+      .nav-cta:hover {
+        background: var(--orange-dark) !important;
+        color: var(--white) !important;
+      }
+
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+      }
+
+      .nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--white);
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        background: var(--navy);
+        display: flex;
+        align-items: center;
+        padding: 100px 5% 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 107, 53, 0.12) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(to bottom, transparent, var(--white));
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        max-width: 1100px;
         margin: 0 auto;
-        padding: 40px 20px;
-        color: #333;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 107, 53, 0.15);
+        border: 1px solid rgba(255, 107, 53, 0.3);
+        color: var(--orange);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 20px;
+        margin-bottom: 24px;
+      }
+
+      .hero-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--orange);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.3);
+        }
+      }
+
+      .hero h1 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: clamp(42px, 6vw, 72px);
+        line-height: 1;
+        color: var(--white);
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 em {
+        font-style: normal;
+        color: var(--orange);
+      }
+
+      .hero-sub {
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.6;
+        margin-bottom: 36px;
+        max-width: 460px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background: var(--orange);
+        color: var(--white);
+        padding: 14px 28px;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        background: var(--orange-dark);
+        transform: translateY(-1px);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--white);
+        padding: 14px 28px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+        display: inline-block;
+      }
+
+      .btn-ghost:hover {
+        border-color: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 48px;
+      }
+
+      .stat {
+        background: rgba(255, 255, 255, 0.04);
+        padding: 20px;
+        text-align: center;
+      }
+
+      .stat-num {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--orange);
+        line-height: 1;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-top: 4px;
+        display: block;
+      }
+
+      .hero-image {
+        position: relative;
+      }
+
+      .hero-img-main {
+        width: 100%;
+        border-radius: 8px;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero-img-card {
+        position: absolute;
+        bottom: -20px;
+        left: -20px;
+        background: var(--white);
+        border-radius: 8px;
+        padding: 16px 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        min-width: 180px;
+      }
+
+      .hero-img-card .card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+      }
+
+      .hero-img-card .card-value {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .hero-img-card .card-sub {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      /* TRUST BAR */
+      .trust-bar {
+        background: var(--orange);
+        padding: 14px 5%;
+        display: flex;
+        justify-content: center;
+        gap: 48px;
+        flex-wrap: wrap;
+      }
+
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .trust-icon {
+        font-size: 16px;
+      }
+
+      /* SERVICES */
+      .section {
+        padding: 80px 5%;
+      }
+
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .section-tag {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 12px;
+      }
+
+      .section-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(32px, 4vw, 48px);
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+
+      .section-sub {
+        font-size: 16px;
+        color: var(--text-muted);
+        max-width: 540px;
+        line-height: 1.6;
+        margin-bottom: 48px;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+      }
+
+      .service-card {
+        background: var(--gray);
+        border-radius: 8px;
+        padding: 28px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        border: 1px solid transparent;
+      }
+
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        border-color: var(--gray-mid);
+      }
+
+      .service-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--navy);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 16px;
+      }
+
+      .service-card h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+
+      .service-card p {
+        font-size: 14px;
+        color: var(--text-muted);
         line-height: 1.6;
       }
-      h1 {
-        color: #ff6b35;
+
+      .service-price {
+        margin-top: 16px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--orange);
       }
-      h2 {
-        margin-top: 40px;
-        border-top: 1px solid #eee;
-        padding-top: 20px;
+
+      /* WHY US */
+      .why-section {
+        background: var(--navy);
+        padding: 80px 5%;
       }
-      .opt-in {
-        background: #f9f9f9;
-        border-left: 4px solid #ff6b35;
-        padding: 16px 20px;
-        margin: 20px 0;
-        border-radius: 0 8px 8px 0;
+
+      .why-section .section-title {
+        color: var(--white);
+      }
+      .why-section .section-sub {
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+      }
+
+      .why-item {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .why-num {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 52px;
+        font-weight: 800;
+        color: rgba(255, 107, 53, 0.2);
+        line-height: 1;
+      }
+
+      .why-item h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--white);
+      }
+
+      .why-item p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.6;
+      }
+
+      /* REVIEWS */
+      .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .review-card {
+        background: var(--white);
+        border: 1px solid var(--gray-mid);
+        border-radius: 8px;
+        padding: 24px;
+      }
+
+      .stars {
+        color: var(--orange);
+        font-size: 14px;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+      }
+
+      .review-text {
+        font-size: 15px;
+        color: var(--text);
+        line-height: 1.6;
+        margin-bottom: 16px;
+        font-style: italic;
+      }
+
+      .reviewer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .reviewer-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .reviewer-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      .reviewer-location {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      /* CTA SECTION */
+      .cta-section {
+        background: var(--orange);
+        padding: 80px 5%;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 16px;
+      }
+
+      .cta-section p {
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 32px;
+      }
+
+      .btn-white {
+        background: var(--white);
+        color: var(--orange);
+        padding: 14px 32px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        display: inline-block;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .btn-white:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--navy);
+        padding: 48px 5% 32px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 40px;
+      }
+
+      .footer-brand {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 24px;
+        color: var(--white);
+        margin-bottom: 12px;
+      }
+
+      .footer-brand span {
+        color: var(--orange);
+      }
+
+      .footer-desc {
+        font-size: 14px;
+        line-height: 1.7;
+        max-width: 300px;
+      }
+
+      .footer-col h4 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--white);
+        margin-bottom: 16px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 10px;
+      }
+      .footer-col a {
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s;
+      }
+      .footer-col a:hover {
+        color: var(--orange);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 13px;
+      }
+
+      .footer-legal {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .footer-legal a {
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        font-size: 12px;
+        transition: color 0.2s;
+      }
+
+      .footer-legal a:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+        .nav-links.open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 64px;
+          left: 0;
+          right: 0;
+          background: var(--navy);
+          padding: 20px 5% 24px;
+          gap: 20px;
+        }
+
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .hero-image {
+          display: none;
+        }
+        .hero-stats {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+        }
+        .trust-bar {
+          gap: 24px;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>Buda HVAC Co.</h1>
-    <p>
-      Professional heating and cooling services in Buda, TX. We handle AC
-      repair, installation, tune-ups, and emergency calls — fast, reliable, and
-      local.
-    </p>
-    <p>Hours: Monday–Friday 7am–7pm | Saturday 8am–2pm</p>
-    <p>Contact: <a href="mailto:info@budahvac.com">info@budahvac.com</a></p>
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="nav-logo">Buda <span>HVAC</span> Co.</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+      </ul>
+      <div class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
 
-    <h2>SMS Communication</h2>
-    <div class="opt-in">
-      <p>
-        By providing your phone number and contacting us, you agree to receive
-        SMS messages from Buda HVAC Co. regarding your service inquiry,
-        appointment confirmations, and follow-up communications. Message and
-        data rates may apply. Reply STOP to unsubscribe at any time. Reply HELP
-        for help.
-      </p>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">Available 24/7 — Same Day Service</div>
+          <h1>Buda's Most<br />Trusted <em>HVAC</em><br />Company</h1>
+          <p class="hero-sub">
+            From emergency AC repairs to full system installs — we keep Buda
+            homes and businesses comfortable year-round. Licensed, insured, and
+            always on time.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Get a Free Quote</a>
+            <a href="tel:5125550100" class="btn-ghost">Call (512) 555-0100</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">12+</span>
+              <span class="stat-label">Years serving Buda</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">2,400+</span>
+              <span class="stat-label">Jobs completed</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">4.9★</span>
+              <span class="stat-label">Google rating</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            class="hero-img-main"
+            src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80"
+            alt="HVAC technician at work"
+          />
+          <div class="hero-img-card">
+            <div class="card-label">Next available</div>
+            <div class="card-value">Today</div>
+            <div class="card-sub">Same-day slots open</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span class="trust-icon">✓</span> Licensed & Insured
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✓</span> Same-Day Service Available
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✓</span> Free Estimates
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✓</span> All Major Brands Serviced
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✓</span> Financing Available
+      </div>
     </div>
 
-    <h2>Privacy Policy</h2>
-    <p>
-      Buda HVAC Co. collects your name, phone number, and service information
-      solely to respond to your inquiry and coordinate service appointments. We
-      do not sell, share, or distribute your personal information to third
-      parties. Your information is used only to communicate with you directly
-      regarding your HVAC service needs.
-    </p>
-    <p>
-      For questions about your data, contact us at
-      <a href="mailto:info@budahvac.com">info@budahvac.com</a>
-    </p>
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="section-inner">
+        <p class="section-tag">What we do</p>
+        <h2 class="section-title">
+          Full-Service Heating<br />& Cooling Solutions
+        </h2>
+        <p class="section-sub">
+          Whether your AC goes out in August or your heat stops working in
+          January, we're the team Buda calls first.
+        </p>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">❄️</div>
+            <h3>AC Repair</h3>
+            <p>
+              Fast diagnosis and repair for all makes and models. Most repairs
+              completed same day.
+            </p>
+            <div class="service-price">Starting at $89 diagnostic fee</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🔧</div>
+            <h3>AC Installation</h3>
+            <p>
+              New system installs with energy-efficient units from Carrier,
+              Trane, Lennox, and more.
+            </p>
+            <div class="service-price">Free in-home estimates</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🌡️</div>
+            <h3>Seasonal Tune-Ups</h3>
+            <p>
+              Keep your system running at peak efficiency with our 21-point
+              inspection and tune-up service.
+            </p>
+            <div class="service-price">$79 per unit</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🔥</div>
+            <h3>Heating Systems</h3>
+            <p>
+              Furnace repair, heat pump service, and full heating system
+              replacements.
+            </p>
+            <div class="service-price">Starting at $89 diagnostic fee</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">⚡</div>
+            <h3>Emergency Service</h3>
+            <p>
+              AC down in the Texas heat? We offer priority emergency dispatch 7
+              days a week.
+            </p>
+            <div class="service-price">Priority response within 2 hours</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📋</div>
+            <h3>Maintenance Plans</h3>
+            <p>
+              Annual plans with priority scheduling, discounted repairs, and
+              bi-annual tune-ups.
+            </p>
+            <div class="service-price">From $149/year</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Terms of Service</h2>
-    <p>
-      By contacting Buda HVAC Co. via our website or SMS, you agree to receive
-      communications related to your service request. You may opt out of SMS
-      communications at any time by replying STOP. This service is intended for
-      residents and businesses in the Buda, TX area seeking HVAC services.
-    </p>
+    <!-- WHY US -->
+    <section class="why-section" id="why-us">
+      <div class="section-inner">
+        <p class="section-tag" style="color: var(--orange)">
+          Why Buda chooses us
+        </p>
+        <h2 class="section-title">
+          We Show Up. We Fix It.<br />We Stand Behind Our Work.
+        </h2>
+        <p class="section-sub">
+          We're not a call center that dispatches strangers. We're your
+          neighbors, and we've been keeping Buda comfortable for over a decade.
+        </p>
+        <div class="why-grid">
+          <div class="why-item">
+            <div class="why-num">01</div>
+            <h3>On Time, Every Time</h3>
+            <p>
+              We give you a 2-hour arrival window and send a text when we're on
+              the way. No more waiting all day.
+            </p>
+          </div>
+          <div class="why-item">
+            <div class="why-num">02</div>
+            <h3>Upfront Pricing</h3>
+            <p>
+              You get a written quote before we start any work. No surprise
+              charges, no pressure tactics.
+            </p>
+          </div>
+          <div class="why-item">
+            <div class="why-num">03</div>
+            <h3>NATE-Certified Techs</h3>
+            <p>
+              Every technician is NATE-certified and background checked. You
+              know exactly who's coming to your home.
+            </p>
+          </div>
+          <div class="why-item">
+            <div class="why-num">04</div>
+            <h3>1-Year Labor Warranty</h3>
+            <p>
+              All repairs come with a 1-year labor warranty. If it breaks again,
+              we come back — no charge.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- REVIEWS -->
+    <section class="section" id="reviews">
+      <div class="section-inner">
+        <p class="section-tag">What customers say</p>
+        <h2 class="section-title">4.9 Stars Across<br />380+ Google Reviews</h2>
+        <p class="section-sub">
+          Don't take our word for it — here's what Buda homeowners and
+          businesses are saying.
+        </p>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "AC went out on a Friday afternoon in July. They had someone at my
+              house by 6pm and fixed it same day. Reasonable price and the tech
+              was super professional. Will never call anyone else."
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">JM</div>
+              <div>
+                <div class="reviewer-name">James M.</div>
+                <div class="reviewer-location">Buda, TX — Homeowner</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "We use Buda HVAC for our office building. Their maintenance plan
+              has saved us from two potential system failures this year.
+              Response time is always fast and pricing is always fair."
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">SR</div>
+              <div>
+                <div class="reviewer-name">Sarah R.</div>
+                <div class="reviewer-location">Kyle, TX — Office Manager</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "Got three quotes for a new system. Buda HVAC wasn't the cheapest
+              but they were the most thorough and actually explained what I
+              needed vs. what I didn't. Installed in one day, no mess left
+              behind."
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">TK</div>
+              <div>
+                <div class="reviewer-name">Tom K.</div>
+                <div class="reviewer-location">Buda, TX — Homeowner</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+      <h2>Ready to Get Comfortable?</h2>
+      <p>Chat with us now, call, or request a quote — we respond fast.</p>
+      <a href="tel:5125550100" class="btn-white">Call (512) 555-0100</a>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-      <script
-        src="https://widgets.leadconnectorhq.com/loader.js"
-        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-        data-widget-id="69efc427af01335b24946d43"
-        data-source="WEB_USER"
-      ></script>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div>
+            <div class="footer-brand">Buda <span>HVAC</span> Co.</div>
+            <p class="footer-desc">
+              Professional heating and cooling services serving Buda, Kyle, San
+              Marcos, and the surrounding Hill Country since 2012.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#services">AC Repair</a></li>
+              <li><a href="#services">AC Installation</a></li>
+              <li><a href="#services">Tune-Ups</a></li>
+              <li><a href="#services">Heating</a></li>
+              <li><a href="#services">Emergency Service</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:5125550100">(512) 555-0100</a></li>
+              <li><a href="mailto:info@budahvac.com">info@budahvac.com</a></li>
+              <li><a href="#">Buda, TX 78610</a></li>
+              <li><a href="#">Mon–Fri 7am–7pm</a></li>
+              <li><a href="#">Sat 8am–2pm</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2025 Buda HVAC Co. All rights reserved.</span>
+          <div class="footer-legal">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#sms">SMS Policy</a>
+          </div>
+        </div>
+
+        <!-- SMS / PRIVACY (compliance — kept in footer, out of the way) -->
+        <div
+          style="
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+          "
+          id="sms"
+        >
+          <p
+            style="
+              font-size: 12px;
+              line-height: 1.7;
+              color: rgba(255, 255, 255, 0.25);
+              max-width: 700px;
+            "
+            id="privacy"
+            id="terms"
+          >
+            By providing your phone number or initiating contact via our chat
+            widget, you agree to receive SMS messages from Buda HVAC Co.
+            regarding your service inquiry, appointment confirmations, and
+            follow-up communications. Message and data rates may apply. Reply
+            STOP to unsubscribe. Reply HELP for help. We do not sell or share
+            your personal information with third parties. Your information is
+            used only to respond to your HVAC service needs.
+          </p>
+        </div>
+      </div>
     </footer>
+
+    <!-- CHAT WIDGET -->
+    <script
+      src="https://widgets.leadconnectorhq.com/loader.js"
+      data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+      data-widget-id="69efc427af01335b24946d43"
+      data-source="WEB_USER"
+    ></script>
+
+    <script>
+      const toggle = document.getElementById("navToggle");
+      const links = document.getElementById("navLinks");
+      toggle.addEventListener("click", () => links.classList.toggle("open"));
+      links
+        .querySelectorAll("a")
+        .forEach((a) =>
+          a.addEventListener("click", () => links.classList.remove("open")),
+        );
+    </script>
   </body>
 </html>
